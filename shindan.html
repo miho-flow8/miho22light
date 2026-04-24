@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人生を止めてる潜在意識の診断｜miho.22light</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink-main: #F2B8C0;
+      --pink-pale: #FDE8EC;
+      --pink-dusty: #D4909A;
+      --pink-deep: #C07080;
+      --pink-light: #FFF0F3;
+      --off-white: #FDF8F8;
+      --text-main: #3D2C2C;
+      --text-sub: #8C6B6B;
+      --text-light: #C4A8A8;
+      --white: #FFFFFF;
+      --font-jp: 'Noto Serif JP', serif;
+      --font-en: 'Cormorant Garamond', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-jp);
+      background: var(--off-white);
+      color: var(--text-main);
+      line-height: 1.9;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== 背景装飾 ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(242,184,192,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(212,144,154,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ===== ページラッパー ===== */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* ===== ヘッダー ===== */
+    .site-header {
+      text-align: center;
+      padding: 32px 0 24px;
+    }
+    .site-logo {
+      font-family: var(--font-en);
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      color: var(--text-light);
+    }
+
+    /* ===== スタート画面 ===== */
+    #screen-start {
+      animation: fadeIn 0.8s ease;
+    }
+    .start-hero {
+      text-align: center;
+      padding: 40px 0 48px;
+    }
+    .start-en {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--pink-dusty);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .start-en::before, .start-en::after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--pink-dusty);
+      opacity: 0.5;
+    }
+    .start-title {
+      font-size: clamp(24px, 6vw, 38px);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-bottom: 20px;
+    }
+    .start-title em {
+      font-style: normal;
+      color: var(--pink-deep);
+    }
+    .start-subtitle {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 2;
+      margin-bottom: 40px;
+    }
+
+    /* 装飾円 */
+    .deco-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink-pale), var(--pink-main));
+      margin: 0 auto 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      box-shadow: 0 8px 32px rgba(212,144,154,0.25);
+    }
+
+    .start-info {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .start-info-item {
+      text-align: center;
+    }
+    .start-info-num {
+      font-family: var(--font-en);
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--pink-dusty);
+      line-height: 1;
+      display: block;
+    }
+    .start-info-label {
+      font-size: 11px;
+      color: var(--text-light);
+      letter-spacing: 0.08em;
+    }
+
+    /* ===== ボタン ===== */
+    .btn-primary {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--pink-dusty), var(--pink-deep));
+      color: var(--white);
+      padding: 20px 32px;
+      border-radius: 50px;
+      font-family: var(--font-jp);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(212,144,154,0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(192,112,128,0.4);
+    }
+    .btn-secondary {
+      display: block;
+      width: 100%;
+      background: var(--white);
+      color: var(--pink-dusty);
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 400;
+      border: 1.5px solid var(--pink-dusty);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 12px;
+    }
+    .btn-secondary:hover {
+      background: var(--pink-pale);
+    }
+
+    /* ===== 質問画面 ===== */
+    #screen-quiz { display: none; }
+
+    .progress-wrap {
+      margin-bottom: 32px;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-light);
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+    .progress-bar {
+      height: 4px;
+      background: rgba(212,144,154,0.2);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink-dusty), var(--pink-deep));
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    .question-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 36px 32px;
+      box-shadow: 0 4px 24px rgba(212,144,154,0.1);
+      border: 1px solid rgba(242,184,192,0.3);
+      margin-bottom: 24px;
+      animation: slideUp 0.4s ease;
+    }
+    .question-category {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--pink-dusty);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .question-number {
+      font-family: var(--font-en);
+      font-size: 48px;
+      font-weight: 300;
+      color: rgba(212,144,154,0.2);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .question-text {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--text-main);
+    }
+
+    .answers {
+      display: grid;
+      gap: 12px;
+    }
+    .answer-btn {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 24px;
+      background: var(--off-white);
+      border: 1.5px solid rgba(242,184,192,0.3);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+      font-family: var(--font-jp);
+      font-size: 15px;
+      color: var(--text-main);
+      font-weight: 300;
+    }
+    .answer-btn:hover {
+      background: var(--pink-pale);
+      border-color: var(--pink-dusty);
+      transform: translateX(4px);
+    }
+    .answer-btn.selected {
+      background: linear-gradient(135deg, var(--pink-pale), #fce4e9);
+      border-color: var(--pink-dusty);
+      color: var(--text-main);
+    }
+    .answer-dot {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border-radius: 50%;
+      border: 1.5px solid var(--pink-dusty);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .answer-btn.selected .answer-dot {
+      background: var(--pink-dusty);
+    }
+    .answer-btn.selected .answer-dot::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+    }
+    .answer-score {
+      margin-left: auto;
+      font-family: var(--font-en);
+      font-size: 18px;
+      color: var(--pink-dusty);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .answer-btn.selected .answer-score { opacity: 1; }
+
+    .nav-btns {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .btn-prev {
+      flex: 0 0 auto;
+      padding: 16px 24px;
+      background: var(--white);
+      border: 1.5px solid rgba(212,144,154,0.3);
+      border-radius: 50px;
+      color: var(--text-light);
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .btn-prev:hover { border-color: var(--pink-dusty); color: var(--pink-dusty); }
+    .btn-next {
+      flex: 1;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, var(--pink-dusty), var(--pink-deep));
+      border: none;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      font-family: var(--font-jp);
+      font-weight: 400;
+      transition: all 0.3s;
+      box-shadow: 0 6px 20px rgba(212,144,154,0.3);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .btn-next.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .btn-next.active:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(192,112,128,0.4);
+    }
+
+    /* ===== 計算中画面 ===== */
+    #screen-loading {
+      display: none;
+      text-align: center;
+      padding: 80px 20px;
+      animation: fadeIn 0.5s ease;
+    }
+    .loading-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid var(--pink-pale);
+      border-top-color: var(--pink-dusty);
+      animation: spin 1s linear infinite;
+      margin: 0 auto 32px;
+    }
+    .loading-text {
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 2;
+    }
+
+    /* ===== 結果画面 ===== */
+    #screen-result {
+      display: none;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .result-header {
+      text-align: center;
+      padding: 40px 0 32px;
+    }
+    .result-type-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pink-dusty), var(--pink-deep));
+      color: white;
+      font-size: 13px;
+      padding: 8px 24px;
+      border-radius: 50px;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+    .result-emoji {
+      font-size: 64px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .result-type-name {
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 400;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .result-belief {
+      font-size: 14px;
+      color: var(--pink-deep);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    /* サブタイプ */
+    .sub-type-box {
+      background: var(--white);
+      border: 1px solid rgba(242,184,192,0.4);
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .sub-label {
+      font-size: 11px;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+    .sub-name {
+      font-size: 14px;
+      color: var(--text-sub);
+    }
+
+    /* スコアバー */
+    .score-section {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px 24px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(242,184,192,0.3);
+    }
+    .score-title {
+      font-size: 13px;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .score-label {
+      font-size: 12px;
+      color: var(--text-sub);
+      min-width: 80px;
+    }
+    .score-bar-wrap {
+      flex: 1;
+      height: 8px;
+      background: var(--pink-pale);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink-dusty), var(--pink-deep));
+      border-radius: 4px;
+      transition: width 1s ease 0.3s;
+    }
+    .score-num {
+      font-family: var(--font-en);
+      font-size: 14px;
+      color: var(--pink-dusty);
+      min-width: 28px;
+      text-align: right;
+    }
+
+    /* 深さチェック */
+    .depth-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .depth-0 { background: #f0f0f0; color: #999; }
+    .depth-1 { background: #fff3e0; color: #e0933a; }
+    .depth-2 { background: #fde8ec; color: var(--pink-deep); }
+    .depth-3 { background: linear-gradient(135deg, #fde8ec, #f9d0d8); color: var(--pink-deep); font-weight: 500; }
+
+    /* 結果カード */
+    .result-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px 24px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(242,184,192,0.3);
+    }
+    .result-card-title {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--pink-dusty);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .result-card-title::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 1px;
+      background: var(--pink-dusty);
+    }
+    .result-card-body {
+      font-size: 15px;
+      color: var(--text-main);
+      line-height: 2;
+    }
+    .result-card-body strong {
+      color: var(--pink-deep);
+      font-weight: 500;
+    }
+
+    /* 警告カード */
+    .warning-card {
+      background: linear-gradient(135deg, #fff0f3, #fde8ec);
+      border-radius: 20px;
+      padding: 28px 24px;
+      margin-bottom: 16px;
+      border-left: 3px solid var(--pink-deep);
+    }
+    .warning-list {
+      list-style: none;
+      padding: 0;
+    }
+    .warning-list li {
+      font-size: 14px;
+      color: var(--text-main);
+      padding: 6px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .warning-list li::before {
+      content: '→';
+      color: var(--pink-dusty);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    /* 行動カード */
+    .action-card {
+      background: linear-gradient(135deg, var(--pink-pale), #fce4e9);
+      border-radius: 20px;
+      padding: 28px 24px;
+      margin-bottom: 24px;
+    }
+    .action-text {
+      font-size: 15px;
+      color: var(--text-main);
+      line-height: 2;
+    }
+
+    /* CTAセクション */
+    .cta-section {
+      background: linear-gradient(135deg, #3D2C2C, #5a3f3f);
+      border-radius: 24px;
+      padding: 40px 28px;
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(242,184,192,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-label {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--pink-main);
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+    .cta-title {
+      font-size: 18px;
+      font-weight: 400;
+      color: white;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .cta-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .btn-cta {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--pink-dusty), var(--pink-deep));
+      color: white;
+      padding: 20px 32px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 400;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+    .btn-line {
+      display: block;
+      width: 100%;
+      background: #06C755;
+      color: white;
+      padding: 18px 32px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 400;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 12px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .btn-line:hover { background: #05b84d; transform: translateY(-1px); }
+
+    .retry-btn {
+      display: block;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-light);
+      cursor: pointer;
+      padding: 16px;
+      transition: color 0.2s;
+    }
+    .retry-btn:hover { color: var(--pink-dusty); }
+
+    /* ===== アニメーション ===== */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== フッター ===== */
+    .footer {
+      text-align: center;
+      padding: 32px 0;
+      font-family: var(--font-en);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--text-light);
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <header class="site-header">
+    <div class="site-logo">miho.22light</div>
+  </header>
+
+  <!-- ===== スタート画面 ===== -->
+  <div id="screen-start">
+    <div class="start-hero">
+      <div class="start-en">Subconscious Diagnosis</div>
+      <div class="deco-circle">🔮</div>
+      <h1 class="start-title">
+        あなたの人生を止めている<br>
+        <em>潜在意識</em>を診断する
+      </h1>
+      <p class="start-subtitle">
+        お金・人間関係・仕事の悩みの根っこには<br>
+        必ず「潜在意識のルール」が隠れています。<br>
+        15問で、あなたのブロックを特定します。
+      </p>
+      <div class="start-info">
+        <div class="start-info-item">
+          <span class="start-info-num">15</span>
+          <span class="start-info-label">問</span>
+        </div>
+        <div class="start-info-item">
+          <span class="start-info-num">3</span>
+          <span class="start-info-label">分</span>
+        </div>
+        <div class="start-info-item">
+          <span class="start-info-num">8</span>
+          <span class="start-info-label">タイプ</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="startQuiz()">診断をはじめる →</button>
+      <p style="font-size:12px;color:var(--text-light);margin-top:16px;text-align:center;">完全無料・約3分で完了します</p>
+    </div>
+  </div>
+
+  <!-- ===== 質問画面 ===== -->
+  <div id="screen-quiz">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span id="progress-text">Question 1 / 15</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-category" id="q-category"></div>
+      <div class="question-number" id="q-number">01</div>
+      <div class="question-text" id="q-text"></div>
+    </div>
+
+    <div class="answers" id="answers-wrap"></div>
+
+    <div class="nav-btns">
+      <button class="btn-prev" id="btn-prev" onclick="prevQuestion()">← 戻る</button>
+      <button class="btn-next" id="btn-next" onclick="nextQuestion()">次へ →</button>
+    </div>
+  </div>
+
+  <!-- ===== 計算中 ===== -->
+  <div id="screen-loading">
+    <div class="loading-circle"></div>
+    <p class="loading-text">
+      あなたの回答を分析しています…<br>
+      潜在意識のパターンを特定中
+    </p>
+  </div>
+
+  <!-- ===== 結果画面 ===== -->
+  <div id="screen-result">
+    <div class="result-header">
+      <div class="result-type-badge">診断結果</div>
+      <div class="result-emoji" id="result-emoji"></div>
+      <h2 class="result-type-name" id="result-type-name"></h2>
+      <p class="result-belief" id="result-belief"></p>
+    </div>
+
+    <div class="sub-type-box" id="sub-type-box">
+      <span class="sub-label">サブタイプ</span>
+      <span class="sub-name" id="sub-type-name"></span>
+    </div>
+
+    <div style="text-align:center;margin-bottom:20px;">
+      <span class="depth-badge" id="depth-badge"></span>
+    </div>
+
+    <div class="score-section">
+      <div class="score-title">タイプ別スコア</div>
+      <div id="score-bars"></div>
+    </div>
+
+    <div class="result-card">
+      <div class="result-card-title">あなたの潜在意識</div>
+      <div class="result-card-body" id="result-description"></div>
+    </div>
+
+    <div class="result-card">
+      <div class="result-card-title">よく現れるパターン</div>
+      <div class="result-card-body" id="result-patterns"></div>
+    </div>
+
+    <div class="warning-card">
+      <div class="result-card-title" style="color:var(--pink-deep);">このままだと起こること</div>
+      <ul class="warning-list" id="result-warnings"></ul>
+    </div>
+
+    <div class="result-card">
+      <div class="result-card-title">本来のあなた</div>
+      <div class="result-card-body" id="result-true-self"></div>
+    </div>
+
+    <div class="action-card">
+      <div class="result-card-title" style="color:var(--pink-deep);">最初の一歩</div>
+      <div class="action-text" id="result-action"></div>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-label">Next Step</div>
+      <p class="cta-title">
+        あなたのブロックは、<br>1人では外しにくい構造です。
+      </p>
+      <p class="cta-sub">
+        より深く知りたい方へ。<br>
+        無料30分セッションで、<br>あなたの本質から一緒に見ていきます。
+      </p>
+      <a href="https://miho22light.vercel.app/#offer" class="btn-cta">無料セッションを予約する →</a>
+      <a href="https://lin.ee/XXXXXXX" class="btn-line">💬 公式LINEに戻る</a>
+    </div>
+
+    <span class="retry-btn" onclick="retryQuiz()">↺ もう一度診断する</span>
+  </div>
+
+  <footer class="footer">© 2026 miho.22light</footer>
+</div>
+
+<script>
+  // ===== 質問データ =====
+  const questions = [
+    { type: 0, category: '我慢・自己犠牲', text: '頼まれると断れず引き受けてしまう' },
+    { type: 0, category: '我慢・自己犠牲', text: '本音を言うより空気を優先することが多い' },
+    { type: 1, category: '承認依存', text: '人にどう思われているか気になることが多い' },
+    { type: 1, category: '承認依存', text: '認められないと不安やモヤモヤを感じる' },
+    { type: 2, category: '完璧主義', text: 'ちゃんと準備できないと行動できない' },
+    { type: 2, category: '完璧主義', text: 'ミスや失敗を強く引きずる' },
+    { type: 3, category: 'コントロール執着', text: '先の予定や流れが見えないと不安になる' },
+    { type: 3, category: 'コントロール執着', text: '人に任せるより自分でやった方が安心する' },
+    { type: 4, category: '被害者意識', text: '環境やタイミングのせいでうまくいかないと感じることがある' },
+    { type: 4, category: '被害者意識', text: '「どうせ私なんて」と思う瞬間がある' },
+    { type: 5, category: '愛情不足', text: '一人でいると寂しさや不安を感じやすい' },
+    { type: 5, category: '愛情不足', text: '相手の反応ひとつで気持ちが大きく揺れる' },
+    { type: 6, category: '自己否定', text: '自分に自信がなく、ダメ出ししてしまうことが多い' },
+    { type: 6, category: '自己否定', text: '褒められても素直に受け取れない' },
+    { type: 7, category: '自由ブロック', text: '本当はやりたいことがあるのに動けない感覚がある' },
+  ];
+
+  const answers = [
+    { label: 'はい', score: 3 },
+    { label: 'どちらかというと はい', score: 2 },
+    { label: 'どちらかというと いいえ', score: 1 },
+    { label: 'いいえ', score: 0 },
+  ];
+
+  // ===== タイプデータ =====
+  const types = [
+    {
+      name: '我慢・自己犠牲タイプ',
+      emoji: '🌸',
+      belief: '「我慢することで人間関係を守ってきた人」',
+      description: 'あなたは本音を抑えることでバランスを取る力があり、周りからは"いい人"と思われやすい傾向があります。<br><br>でも心の奥では、<strong>「本音を出したら嫌われる」</strong>という深い恐怖を抱えています。',
+      patterns: '・頼まれると断れず引き受けてしまう<br>・自分より他人の気持ちを優先する<br>・疲れているのに「大丈夫」と言ってしまう<br>・NOを言った後に罪悪感がある',
+      warnings: ['ストレスが蓄積し、気づいたら燃え尽きてしまう', 'やりたいことが分からなくなっていく', '人に振り回される人生が続く'],
+      trueSelf: '本音を出した方が、むしろ人間関係は深くなり、人生は軽くなるタイプです。あなたの本音は、誰かを傷つけない。',
+      action: '👉 「小さなNOを言う練習」\n今日、一度だけ「今はちょっと難しいです」と伝えてみてください。',
+    },
+    {
+      name: '承認依存タイプ',
+      emoji: '⭐',
+      belief: '「認められないと価値がない」という思い込み',
+      description: 'あなたは外からの評価を基準に自分の価値を決めてきました。<strong>「自分で自分を認められない」</strong>という根っこのブロックがあります。<br><br>SNSの反応や人の言葉に一喜一憂してしまいがちです。',
+      patterns: '・SNSのいいね数や反応が気になる<br>・褒められると過剰に喜び、批判されると落ち込む<br>・人の評価で自分の価値が変わる感覚がある<br>・承認されるために無理をしてしまう',
+      warnings: ['自分軸が育たず、他人に振り回され続ける', 'いつまでも「足りない」感覚が続く', '本当にやりたいことではなく、評価されることを選んでしまう'],
+      trueSelf: 'あなたの価値は、誰かに認められる前からそこにあります。自分を認める練習が、人生を変えるカギです。',
+      action: '👉 「一日一つ、自分を認める言葉を言う」\n「今日も頑張った」「それでいい」小さな言葉でOKです。',
+    },
+    {
+      name: '完璧主義タイプ',
+      emoji: '💎',
+      belief: '「完璧じゃないとダメ」という思い込み',
+      description: 'あなたは高い基準を持ち、丁寧に物事を進める力があります。でもその裏には<strong>「失敗＝価値がなくなる恐怖」</strong>が隠れています。<br><br>準備が整わないと動けない、完成しないうちに諦めてしまうパターンがあります。',
+      patterns: '・完璧に準備できないと行動できない<br>・ミスを引きずり、何度も思い出してしまう<br>・完成形をイメージしすぎて動けなくなる<br>・自分に厳しく、他人にも無意識に厳しくなる',
+      warnings: ['行動が遅れ続け、機会を逃す', '「いつかやる」が永遠に続く', '自分を責め続け、自己肯定感が下がっていく'],
+      trueSelf: '完璧じゃなくても、動き出した自分には価値があります。「60点でGO」が、人生を前に進めるコツです。',
+      action: '👉 「完成度60%で公開・提出する練習」\n今日、完璧でないまま一つ動いてみてください。',
+    },
+    {
+      name: 'コントロール執着タイプ',
+      emoji: '🌀',
+      belief: '「全て自分で管理しないと不安」という思い込み',
+      description: 'あなたは責任感が強く、しっかりものとして頼りにされてきた面があります。でも心の奥では<strong>「安心を外に求めている」</strong>状態が続いています。<br><br>予定外のことや人に任せることへの強い不安があります。',
+      patterns: '・予定や計画が変わるとパニックになりやすい<br>・人に任せると心配で確認してしまう<br>・常に「次どうなるか」を考えている<br>・リラックスするのが難しい',
+      warnings: ['孤独感と疲弊感が続く', '人間関係がうまくいかなくなる', '自分が全部やらないといけないという重さが続く'],
+      trueSelf: '手放すことが、実は安心への近道です。あなたが全部やらなくても、世界は回ります。',
+      action: '👉 「一つだけ誰かに任せる」\n今週、一つだけ人に頼んで、結果をそのまま受け取ってみてください。',
+    },
+    {
+      name: '被害者意識タイプ',
+      emoji: '☁️',
+      belief: '「どうせうまくいかない」という思い込み',
+      description: 'あなたは過去に何度も傷ついた経験から、<strong>「どうせ無理」という刷り込み</strong>が深く入っています。<br><br>環境や他人のせいにすることで、自分を守ってきた面があります。',
+      patterns: '・うまくいかないと環境や他人のせいにしがち<br>・「どうせ私なんか」が心の中に浮かぶ<br>・新しいことへの挑戦に強い抵抗がある<br>・自信を持つことが難しい',
+      warnings: ['現状を変えられないまま時間が過ぎる', '自分を主人公として生きられない', '不満は続くが動けないジレンマが深まる'],
+      trueSelf: 'あなたの過去は、あなたの未来を決めない。気づいた今この瞬間から、物語を書き換えることができます。',
+      action: '👉 「今日できた小さなことを一つ書き留める」\nどんな小さなことでもOK。「できた自分」の記録が自信を育てます。',
+    },
+    {
+      name: '愛情不足タイプ',
+      emoji: '💗',
+      belief: '「私は愛されない」という思い込み',
+      description: 'あなたは深く人と繋がりたいという強い気持ちを持っています。でも心の奥には<strong>「無条件の愛を受け取った記憶が少ない」</strong>という傷があります。<br><br>誰かの反応に敏感で、一人でいることへの不安が強い傾向があります。',
+      patterns: '・一人でいると強い不安や寂しさがある<br>・相手の言葉や態度に過剰に反応してしまう<br>・愛情を確認したくて試し行動をしてしまう<br>・依存しやすい関係性になりがち',
+      warnings: ['不健全な関係に居続けてしまう', '自分の感情に振り回される日々が続く', '本当に大切な人を遠ざけてしまう'],
+      trueSelf: 'あなたはすでに愛される存在です。まず自分自身を愛する練習が、外の愛情を受け取る器を育てます。',
+      action: '👉 「自分に「よくやってるね」と声をかける」\n毎日寝る前に、自分をひとなでするような言葉をかけてみてください。',
+    },
+    {
+      name: '自己否定タイプ',
+      emoji: '🌿',
+      belief: '「私はダメな人間」という思い込み',
+      description: 'あなたは自分に厳しく、常に「もっとできるはず」と自分を追い続けてきました。<strong>「存在価値の否定」</strong>という深いところにブロックがあります。<br><br>褒められても素直に受け取れず、自分責めが癖になっています。',
+      patterns: '・常に自分のダメな部分が目につく<br>・褒められると「お世辞だ」と思ってしまう<br>・比べては「自分は劣っている」と感じる<br>・自分の意見に自信が持てない',
+      warnings: ['自己肯定感がどんどん下がっていく', 'チャンスが来ても「私には無理」と諦めてしまう', 'エネルギーが自分責めで消耗し続ける'],
+      trueSelf: 'あなたの存在そのものに価値があります。何かを達成しなくても、今のあなたで十分すぎるくらいです。',
+      action: '👉 「今日の自分に点数をつけない」\n評価なしで、ただ「今日も存在した」を認めてみてください。',
+    },
+    {
+      name: '自由ブロックタイプ',
+      emoji: '🦋',
+      belief: '「自由に生きたら危険」という思い込み',
+      description: 'あなたの心の奥には、本当はやりたいことや、なりたい自分が眠っています。でも<strong>「自由＝不安・危険」という刷り込み</strong>が、一歩踏み出すことを止めています。<br><br>周りの目や常識の枠の中で生きることが「安全」だと感じてきました。',
+      patterns: '・やりたいことはあるが動けない感覚がある<br>・「こんな私がやっていいのか」という遠慮がある<br>・自分らしく生きることへの罪悪感がある<br>・変化への強い抵抗がある',
+      warnings: ['本当に望む人生を生きられないまま時間が過ぎる', '「いつかやる」が永遠に続く', 'ずっと「満たされない感覚」が残る'],
+      trueSelf: 'あなたが望む人生を生きることは、わがままじゃない。それが、あなたの本来の姿です。',
+      action: '👉 「やりたいことをノートに書き出す」\n人に見せなくていい。ただ「私はこれがやりたい」を言葉にしてみてください。',
+    },
+  ];
+
+  // ===== 状態 =====
+  let currentQ = 0;
+  let userAnswers = new Array(15).fill(null);
+  let scores = new Array(8).fill(0);
+
+  // ===== スタート =====
+  function startQuiz() {
+    document.getElementById('screen-start').style.display = 'none';
+    document.getElementById('screen-quiz').style.display = 'block';
+    currentQ = 0;
+    userAnswers = new Array(15).fill(null);
+    scores = new Array(8).fill(0);
+    renderQuestion();
+  }
+
+  // ===== 質問レンダリング =====
+  function renderQuestion() {
+    const q = questions[currentQ];
+    document.getElementById('q-category').textContent = q.category;
+    document.getElementById('q-number').textContent = String(currentQ + 1).padStart(2, '0');
+    document.getElementById('q-text').textContent = q.text;
+
+    const pct = Math.round((currentQ / 15) * 100);
+    document.getElementById('progress-text').textContent = `Question ${currentQ + 1} / 15`;
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('progress-fill').style.width = pct + '%';
+
+    const wrap = document.getElementById('answers-wrap');
+    wrap.innerHTML = '';
+    answers.forEach((a, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'answer-btn' + (userAnswers[currentQ] === i ? ' selected' : '');
+      btn.innerHTML = `<div class="answer-dot"></div><span>${a.label}</span><span class="answer-score">${a.score}</span>`;
+      btn.onclick = () => selectAnswer(i);
+      wrap.appendChild(btn);
+    });
+
+    const nextBtn = document.getElementById('btn-next');
+    if (userAnswers[currentQ] !== null) {
+      nextBtn.classList.add('active');
+    } else {
+      nextBtn.classList.remove('active');
+    }
+
+    document.getElementById('btn-prev').style.visibility = currentQ === 0 ? 'hidden' : 'visible';
+    document.getElementById('btn-next').textContent = currentQ === 14 ? '結果を見る ✦' : '次へ →';
+
+    // カードアニメーション
+    const card = document.querySelector('.question-card');
+    card.style.animation = 'none';
+    card.offsetHeight;
+    card.style.animation = 'slideUp 0.4s ease';
+  }
+
+  function selectAnswer(idx) {
+    userAnswers[currentQ] = idx;
+    document.querySelectorAll('.answer-btn').forEach((btn, i) => {
+      btn.classList.toggle('selected', i === idx);
+    });
+    document.getElementById('btn-next').classList.add('active');
+  }
+
+  function prevQuestion() {
+    if (currentQ > 0) { currentQ--; renderQuestion(); }
+  }
+
+  function nextQuestion() {
+    if (userAnswers[currentQ] === null) return;
+    if (currentQ === 14) {
+      showResult();
+    } else {
+      currentQ++;
+      renderQuestion();
+    }
+  }
+
+  // ===== 結果計算 =====
+  function showResult() {
+    document.getElementById('screen-quiz').style.display = 'none';
+    document.getElementById('screen-loading').style.display = 'block';
+
+    setTimeout(() => {
+      calcScores();
+      renderResult();
+      document.getElementById('screen-loading').style.display = 'none';
+      document.getElementById('screen-result').style.display = 'block';
+      window.scrollTo(0, 0);
+    }, 2000);
+  }
+
+  function calcScores() {
+    scores = new Array(8).fill(0);
+    questions.forEach((q, i) => {
+      if (userAnswers[i] !== null) {
+        scores[q.type] += answers[userAnswers[i]].score;
+      }
+    });
+    // 自由ブロックは単問なので最大3点→他タイプと比較するために調整
+    // 他タイプが全部中〜高(avg>=3)なら自由ブロックを「本音封印タイプ」昇格
+    const otherAvg = scores.slice(0, 7).reduce((a, b) => a + b, 0) / 7;
+    if (otherAvg >= 3 && scores[7] >= 2) {
+      scores[7] = 7; // 昇格
+    }
+  }
+
+  function renderResult() {
+    // メインタイプ
+    const maxScore = Math.max(...scores);
+    const mainIdx = scores.indexOf(maxScore);
+
+    // サブタイプ
+    const sortedIdx = scores.map((s, i) => i).sort((a, b) => scores[b] - scores[a]);
+    const subIdx = sortedIdx[1];
+
+    // 深さチェック（メインタイプのスコア）
+    const mainTypeScores = questions
+      .filter(q => q.type === mainIdx)
+      .map((q, i) => answers[userAnswers[questions.findIndex(qq => qq === q)]].score);
+    const mainTotal = scores[mainIdx];
+    let depthLabel = '', depthClass = '';
+    if (mainTotal <= 2) { depthLabel = '影響ほぼなし'; depthClass = 'depth-0'; }
+    else if (mainTotal <= 4) { depthLabel = '軽度のブロック'; depthClass = 'depth-1'; }
+    else if (mainTotal <= 6) { depthLabel = '中度のブロック（行動に影響）'; depthClass = 'depth-2'; }
+    else { depthLabel = '⚠️ 強いブロック（要対処）'; depthClass = 'depth-3'; }
+
+    // 複合型チェック
+    const highCount = scores.filter(s => s >= 3).length;
+    const isComplex = highCount >= 5;
+
+    const t = types[mainIdx];
+
+    document.getElementById('result-emoji').textContent = t.emoji;
+    document.getElementById('result-type-name').textContent = isComplex ? '複合型（深い思い込み）' : t.name;
+    document.getElementById('result-belief').textContent = isComplex ? '複数のブロックが重なっています' : t.belief;
+
+    // サブタイプ
+    if (!isComplex && subIdx !== mainIdx && scores[subIdx] >= 2) {
+      document.getElementById('sub-type-box').style.display = 'flex';
+      document.getElementById('sub-type-name').textContent = types[subIdx].emoji + ' ' + types[subIdx].name + '（サブ）';
+    } else {
+      document.getElementById('sub-type-box').style.display = 'none';
+    }
+
+    // 深さバッジ
+    const badge = document.getElementById('depth-badge');
+    badge.textContent = depthLabel;
+    badge.className = 'depth-badge ' + depthClass;
+
+    // スコアバー
+    const barWrap = document.getElementById('score-bars');
+    barWrap.innerHTML = '';
+    const typeNames = ['我慢・自己犠牲', '承認依存', '完璧主義', 'コントロール', '被害者意識', '愛情不足', '自己否定', '自由ブロック'];
+    const maxPossible = [6, 6, 6, 6, 6, 6, 6, 3];
+    scores.forEach((s, i) => {
+      const pct = Math.round((s / maxPossible[i]) * 100);
+      barWrap.innerHTML += `
+        <div class="score-row">
+          <div class="score-label">${types[i].emoji} ${typeNames[i]}</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-fill" style="width:0%" data-pct="${pct}"></div>
+          </div>
+          <div class="score-num">${s}</div>
+        </div>`;
+    });
+    // アニメーション
+    setTimeout(() => {
+      document.querySelectorAll('.score-bar-fill').forEach(el => {
+        el.style.width = el.dataset.pct + '%';
+      });
+    }, 100);
+
+    // 結果テキスト
+    const content = isComplex ? types[mainIdx] : t;
+    document.getElementById('result-description').innerHTML = content.description;
+    document.getElementById('result-patterns').innerHTML = content.patterns;
+    const warnEl = document.getElementById('result-warnings');
+    warnEl.innerHTML = content.warnings.map(w => `<li>${w}</li>`).join('');
+    document.getElementById('result-true-self').innerHTML = content.trueSelf;
+    document.getElementById('result-action').innerHTML = content.action.replace(/\n/g, '<br>');
+  }
+
+  function retryQuiz() {
+    document.getElementById('screen-result').style.display = 'none';
+    document.getElementById('screen-start').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+</script>
+
+</body>
+</html>
