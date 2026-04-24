@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>セッションありがとうございました｜miho.22light</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink-main: #F2B8C0;
+      --pink-pale: #FDE8EC;
+      --pink-dusty: #D4909A;
+      --pink-deep: #C07080;
+      --off-white: #FDF8F8;
+      --text-main: #3D2C2C;
+      --text-sub: #8C6B6B;
+      --text-light: #C4A8A8;
+      --white: #FFFFFF;
+      --dark: #2A1F1F;
+      --font-jp: 'Noto Serif JP', serif;
+      --font-en: 'Cormorant Garamond', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-jp);
+      background: var(--off-white);
+      color: var(--text-main);
+      line-height: 1.9;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ===== ヘッダー ===== */
+    .site-header {
+      text-align: center;
+      padding: 28px 24px 20px;
+    }
+    .site-logo {
+      font-family: var(--font-en);
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      color: var(--text-light);
+    }
+
+    /* ===== ヒーロー（感謝） ===== */
+    .hero {
+      text-align: center;
+      padding: 48px 24px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(242,184,192,0.2) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-emoji {
+      font-size: 52px;
+      margin-bottom: 24px;
+      display: block;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .hero-title {
+      font-size: clamp(22px, 5vw, 36px);
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--pink-deep);
+    }
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 2.2;
+      max-width: 480px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+
+    /* ===== メイン ===== */
+    .main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ===== 共通フェード ===== */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      margin-bottom: 64px;
+    }
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== 区切り ===== */
+    .divider {
+      text-align: center;
+      margin: 40px 0;
+      color: var(--pink-main);
+      font-size: 16px;
+      letter-spacing: 0.5em;
+    }
+
+    /* ===== セクションラベル ===== */
+    .section-label {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--pink-dusty);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .section-label::before, .section-label::after {
+      content: '';
+      display: block;
+      width: 28px; height: 1px;
+      background: var(--pink-dusty);
+      opacity: 0.4;
+    }
+    .section-title {
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 400;
+      text-align: center;
+      color: var(--text-main);
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    /* ===== 本文テキスト ===== */
+    .body-text {
+      font-size: 15px;
+      color: var(--text-main);
+      line-height: 2.4;
+    }
+    .body-text p { margin-bottom: 24px; }
+    .body-text p:last-child { margin-bottom: 0; }
+    .body-text strong { color: var(--pink-deep); font-weight: 500; }
+
+    /* ===== 共感ブロック ===== */
+    .empathy-block {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px 28px;
+      border: 1px solid rgba(242,184,192,0.3);
+      margin-bottom: 24px;
+    }
+    .empathy-title {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(242,184,192,0.3);
+    }
+    .empathy-text {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 2.2;
+    }
+
+    /* ===== 引用ブロック ===== */
+    .quote-block {
+      background: linear-gradient(135deg, var(--pink-pale), #fce4e9);
+      border-left: 3px solid var(--pink-dusty);
+      border-radius: 0 16px 16px 0;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 16px;
+      color: var(--text-main);
+      line-height: 2;
+      font-weight: 400;
+    }
+
+    /* ===== 暗いブロック ===== */
+    .dark-block {
+      background: var(--dark);
+      border-radius: 20px;
+      padding: 32px 28px;
+      margin: 28px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .dark-block::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(242,184,192,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .dark-quote {
+      font-family: var(--font-en);
+      font-style: italic;
+      font-size: clamp(18px, 4vw, 26px);
+      color: var(--pink-main);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    .dark-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 2.2;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== なぜ必要か（3つの理由） ===== */
+    .reasons {
+      display: grid;
+      gap: 16px;
+    }
+    .reason-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px 24px;
+      border: 1px solid rgba(242,184,192,0.3);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .reason-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(212,144,154,0.12);
+    }
+    .reason-num {
+      font-family: var(--font-en);
+      font-size: 40px;
+      font-weight: 300;
+      color: rgba(212,144,154,0.25);
+      line-height: 1;
+      min-width: 40px;
+    }
+    .reason-content {}
+    .reason-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .reason-title em {
+      color: var(--pink-deep);
+      font-style: normal;
+    }
+    .reason-text {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 2;
+    }
+
+    /* ===== プログラム内容 ===== */
+    .program-card {
+      background: linear-gradient(135deg, var(--dark), #3a2525);
+      border-radius: 28px;
+      padding: 48px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .program-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(242,184,192,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .program-badge {
+      display: inline-block;
+      background: var(--pink-dusty);
+      color: white;
+      font-size: 12px;
+      padding: 6px 20px;
+      border-radius: 50px;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .program-title {
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 400;
+      color: white;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .program-title em {
+      color: var(--pink-main);
+      font-style: normal;
+    }
+    .program-features {
+      list-style: none;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .program-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+    }
+    .program-features li:last-child { border-bottom: none; }
+    .program-features li::before {
+      content: '✦';
+      color: var(--pink-dusty);
+      font-size: 10px;
+      margin-top: 4px;
+    }
+    .program-price-wrap {
+      background: rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 28px;
+      border: 1px solid rgba(242,184,192,0.15);
+      position: relative;
+      z-index: 1;
+    }
+    .program-price {
+      font-family: var(--font-en);
+      font-size: 56px;
+      font-weight: 300;
+      color: var(--pink-main);
+      line-height: 1;
+    }
+    .program-price-tax {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 6px;
+    }
+    .program-price-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 4px;
+    }
+
+    /* ===== ビフォーアフター ===== */
+    .ba-wrap {
+      display: grid;
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 44px 1fr;
+      align-items: center;
+    }
+    .ba-before {
+      background: var(--white);
+      border-radius: 12px 0 0 12px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--text-sub);
+      border: 1px solid rgba(200,200,200,0.3);
+      border-right: none;
+      line-height: 1.6;
+    }
+    .ba-arrow {
+      background: var(--pink-dusty);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+    }
+    .ba-after {
+      background: var(--pink-pale);
+      border-radius: 0 12px 12px 0;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 400;
+      border: 1px solid rgba(242,184,192,0.4);
+      border-left: none;
+      line-height: 1.6;
+    }
+
+    /* ===== mihoの約束 ===== */
+    .promise-block {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 36px 28px;
+      border: 1px solid rgba(242,184,192,0.3);
+      text-align: center;
+    }
+    .promise-emoji { font-size: 40px; margin-bottom: 16px; display: block; }
+    .promise-title {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+    .promise-text {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 2.4;
+    }
+    .promise-sign {
+      font-family: var(--font-en);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--pink-dusty);
+      margin-top: 24px;
+      display: block;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-list { display: grid; gap: 12px; }
+    .faq-item {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 24px;
+      border: 1px solid rgba(242,184,192,0.3);
+    }
+    .faq-q {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .faq-q-mark {
+      font-family: var(--font-en);
+      font-size: 20px;
+      color: var(--pink-dusty);
+      line-height: 1.2;
+      min-width: 16px;
+    }
+    .faq-a {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 2;
+      padding-left: 28px;
+    }
+
+    /* ===== CTA最終 ===== */
+    .final-cta {
+      background: linear-gradient(135deg, #f9d0d8, var(--pink-pale));
+      border-radius: 28px;
+      padding: 52px 32px;
+      text-align: center;
+    }
+    .final-cta-title {
+      font-size: clamp(20px, 4.5vw, 30px);
+      font-weight: 400;
+      color: var(--text-main);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .final-cta-title em {
+      color: var(--pink-deep);
+      font-style: normal;
+    }
+    .final-cta-sub {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 2.2;
+      margin-bottom: 36px;
+    }
+    .btn-primary {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--pink-dusty), var(--pink-deep));
+      color: white;
+      padding: 20px 32px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 400;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      box-shadow: 0 8px 24px rgba(192,112,128,0.3);
+      margin-bottom: 12px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(192,112,128,0.4);
+    }
+    .btn-line {
+      display: block;
+      width: 100%;
+      background: #06C755;
+      color: white;
+      padding: 18px 32px;
+      border-radius: 50px;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .btn-line:hover { background: #05b84d; transform: translateY(-1px); }
+    .cta-note {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 16px;
+      line-height: 1.8;
+    }
+
+    /* ===== フッター ===== */
+    .footer {
+      text-align: center;
+      padding: 32px 0;
+      font-family: var(--font-en);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--text-light);
+    }
+
+    /* ===== アニメーション ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-logo">miho.22light</div>
+  </header>
+
+  <!-- ヒーロー -->
+  <div class="hero">
+    <span class="hero-emoji">🌸</span>
+    <h1 class="hero-title">
+      セッション、<br>
+      <em>ありがとうございました。</em>
+    </h1>
+    <p class="hero-sub">
+      今日、あなたが来てくれたことが<br>
+      すごく嬉しかったです。<br>
+      ゆっくり読んでいってください。
+    </p>
+  </div>
+
+  <main class="main">
+
+    <!-- 共感セクション -->
+    <div class="fade-section">
+      <div class="body-text">
+        <p>今日のセッション、どうでしたか？</p>
+        <p>「ブロックの正体がわかった」「私、本当はこの感情を味わいたくなかったんだ」——そんな気づきが生まれた方も多いと思います。</p>
+        <p>その気づきは、本物です。あなたの中に、ちゃんと答えがありました。</p>
+      </div>
+
+      <div class="quote-block">
+        でも今、こう思っていませんか？<br>
+        「気づいたのはいいけど、これからどうすればいいんだろう。」
+      </div>
+
+      <div class="body-text">
+        <p>その感覚、すごく自然なことです。気づきは「始まり」であって、「変化」そのものじゃないから。</p>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 問題提起 -->
+    <div class="fade-section">
+      <div class="section-label">The Reality</div>
+      <h2 class="section-title">正直に、話させてください。</h2>
+
+      <div class="dark-block">
+        <span class="dark-quote">"気づきだけでは、人は変われない。"</span>
+        <p class="dark-text">潜在意識は、長年かけて作られたものです。一度の気づきで書き換えようとしても、脳はすぐに「いつものパターン」に戻ろうとします。それは意志の弱さじゃない。潜在意識の仕組みがそうなっているから。</p>
+      </div>
+
+      <div class="body-text">
+        <p>今まで「わかってるのにできない」「変わろうと思ったのにまた同じことを繰り返した」という経験はありませんでしたか？</p>
+        <p>それがまさに、<strong>潜在意識が簡単には変わらない</strong>という証拠です。</p>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- なぜ3ヶ月が必要か -->
+    <div class="fade-section">
+      <div class="section-label">Why 3 Months</div>
+      <h2 class="section-title">だから、3ヶ月が必要なんです。</h2>
+
+      <div class="reasons">
+        <div class="reason-card">
+          <div class="reason-num">01</div>
+          <div class="reason-content">
+            <div class="reason-title"><em>潜在意識は、繰り返しで書き換わる</em></div>
+            <div class="reason-text">1回の気づきで変わるなら、誰も苦労しません。セッションを重ねながら、何度も何度も「本来の自分」に触れることで、初めて思い込みが溶けていきます。</div>
+          </div>
+        </div>
+        <div class="reason-card">
+          <div class="reason-num">02</div>
+          <div class="reason-content">
+            <div class="reason-title"><em>一人では「元の自分」に戻る</em></div>
+            <div class="reason-text">人は環境に引っ張られます。日常に戻った瞬間、脳はいつものパターンを使おうとする。だから「伴走してくれる人」が必要なんです。一人でやろうとすると、必ず戻ります。</div>
+          </div>
+        </div>
+        <div class="reason-card">
+          <div class="reason-num">03</div>
+          <div class="reason-content">
+            <div class="reason-title"><em>毎日の自己対話が、変容を加速させる</em></div>
+            <div class="reason-text">セッションとセッションの間が勝負です。あなた専用のAI相談相手を渡すのは、24時間「自分と向き合う習慣」を作るため。これが3ヶ月で現実を変える鍵になります。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- プログラム内容 -->
+    <div class="fade-section">
+      <div class="section-label">3 Month Program</div>
+      <h2 class="section-title">3ヶ月変容プログラムで<br>できること</h2>
+
+      <div class="program-card">
+        <span class="program-badge">✦ 3ヶ月変容プログラム</span>
+        <h3 class="program-title">
+          内側を整えて、<br>
+          <em>現実を書き換える。</em>
+        </h3>
+
+        <ul class="program-features">
+          <li>月2回・完全1対1 Zoomセッション（計6回）<br><span style="font-size:12px;opacity:0.6;">毎回、その時のあなたに合わせて深く掘り下げます</span></li>
+          <li>あなた専用AIプロンプト渡し（24時間自己対話）<br><span style="font-size:12px;opacity:0.6;">mihoがあなた専用に作成。いつでも自分と対話できます</span></li>
+          <li>毎月PDF教材（量子力学・引き寄せ・宇宙の法則）<br><span style="font-size:12px;opacity:0.6;">現実創造の仕組みを体系的に学べます</span></li>
+          <li>セッション間のLINEサポート<br><span style="font-size:12px;opacity:0.6;">「また戻りそう」な瞬間も一人にしません</span></li>
+          <li>クレジットカード払い対応</li>
+        </ul>
+
+        <div class="program-price-wrap">
+          <div class="program-price">¥220,000</div>
+          <div class="program-price-tax">税込 ¥242,000</div>
+          <div class="program-price-note">分割相談可</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 3ヶ月後のあなた -->
+    <div class="fade-section">
+      <div class="section-label">Your Future</div>
+      <h2 class="section-title">3ヶ月後、あなたはこう変わっている。</h2>
+
+      <div class="ba-wrap">
+        <div class="ba-row">
+          <div class="ba-before">人の目がいつも気になる</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after">人の目が気にならなくなった</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before">自分らしく生きたいのに動けない</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after">本来の自分を生きられるようになった</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before">同じ悩みをずっと繰り返している</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after">現実を書き換えるプロセスを学べた</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before">変わり方がわからない</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after">自分でブロックを外せるようになった</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before">「どうせ私なんか」が口癖</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after">ありのままの自分を信頼できている</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- mihoの約束 -->
+    <div class="fade-section">
+      <div class="promise-block">
+        <span class="promise-emoji">🕊️</span>
+        <h3 class="promise-title">
+          私はあなたの伴走者として、<br>
+          3ヶ月間、一緒にいます。
+        </h3>
+        <p class="promise-text">
+          私自身が、16歳の出産、2000万の借金、うつ、摂食障害、父の死——そのどん底から、今ここにいます。<br><br>
+          だから知っています。<strong style="color:var(--pink-deep);">一人でやろうとすることがいかに苦しいか。</strong><br><br>
+          そして知っています。<strong style="color:var(--pink-deep);">本質から向き合えば、必ず変われることを。</strong><br><br>
+          押し売りはしません。あなたが本気で変わりたいと思ったときだけ、一緒に歩みたいと思っています。
+        </p>
+        <span class="promise-sign">— miho</span>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- FAQ -->
+    <div class="fade-section">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">よくある質問</h2>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q"><span class="faq-q-mark">Q</span>本当に変われますか？</div>
+          <div class="faq-a">「変えてもらえる」という意識では、何をしても変わりません。私はあなたを変えることはできません。でも、<strong style="color:var(--pink-deep);">自分から変わる！</strong>そう思う方の変容を、全力でサポートします。変わるのはあなた自身。私はその道を一緒に歩む存在です。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span class="faq-q-mark">Q</span>今じゃなくてもいいですか？</div>
+          <div class="faq-a">もちろん、タイミングは大切です。ただ、「変わりたい」と思った瞬間のエネルギーが一番大きい。時間が経つと、また「いつものパターン」に戻っていきます。今の気持ちを大切にしてください。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span class="faq-q-mark">Q</span>分割払いはできますか？</div>
+          <div class="faq-a">はい、ご相談ください。クレジットカード払いにも対応しています。お気軽にLINEでお聞きください。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span class="faq-q-mark">Q</span>AIを使ったことがないのですが？</div>
+          <div class="faq-a">まったく問題ありません。セッション後にわかりやすい使い方をお伝えします。スマホ一つで使えます。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- Final CTA -->
+    <div class="final-cta fade-section">
+      <h2 class="final-cta-title">
+        今日気づいた「あなた」を、<br>
+        <em>そのまま終わらせないでほしい。</em>
+      </h2>
+      <p class="final-cta-sub">
+        難しく考えなくていい。<br>
+        「変わりたい」という気持ちがあれば、それだけで十分です。<br><br>
+        まずLINEで「申し込みたい」と送ってください。<br>
+        一緒に次の一歩を踏み出しましょう。
+      </p>
+      <a href="https://forms.gle/Xd79tVTK33T2yRW7A" class="btn-primary">申し込む・詳しく聞く →</a>
+      <a href="https://lin.ee/6vgyrrP" class="btn-line">💬 LINEで相談する</a>
+      <p class="cta-note">
+        ✦ 押し売り・勧誘は一切しません<br>
+        ✦ 質問だけでも大歓迎です
+      </p>
+    </div>
+
+  </main>
+
+  <footer class="footer">© 2026 miho.22light</footer>
+
+  <script>
+    const fadeEls = document.querySelectorAll('.fade-section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>私について｜miho.22light</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink-main: #F2B8C0;
+      --pink-pale: #FDE8EC;
+      --pink-dusty: #D4909A;
+      --pink-deep: #C07080;
+      --off-white: #FDF8F8;
+      --text-main: #3D2C2C;
+      --text-sub: #8C6B6B;
+      --text-light: #C4A8A8;
+      --white: #FFFFFF;
+      --dark: #2A1F1F;
+      --font-jp: 'Noto Serif JP', serif;
+      --font-en: 'Cormorant Garamond', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-jp);
+      background: var(--off-white);
+      color: var(--text-main);
+      line-height: 1.9;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ===== ヘッダー ===== */
+    .site-header {
+      text-align: center;
+      padding: 32px 24px 24px;
+      position: relative;
+    }
+    .site-logo {
+      font-family: var(--font-en);
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      color: var(--text-light);
+    }
+    .back-btn {
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      color: var(--pink-dusty);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: opacity 0.2s;
+    }
+    .back-btn:hover { opacity: 0.7; }
+
+    /* ===== ヒーロー ===== */
+    .hero {
+      text-align: center;
+      padding: 48px 24px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(242,184,192,0.2) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-en {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 0.45em;
+      color: var(--pink-dusty);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .hero-en::before, .hero-en::after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--pink-dusty);
+      opacity: 0.5;
+    }
+    .hero-title {
+      font-size: clamp(28px, 7vw, 48px);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-family: var(--font-en);
+      color: var(--pink-deep);
+      font-size: 1.1em;
+    }
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 2.2;
+      max-width: 480px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+
+    /* ===== メインコンテンツ ===== */
+    .main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ===== チャプター ===== */
+    .chapter {
+      margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .chapter.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chapter-label {
+      font-family: var(--font-en);
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      color: var(--text-light);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .chapter-num {
+      font-family: var(--font-en);
+      font-size: 72px;
+      font-weight: 300;
+      color: rgba(212,144,154,0.12);
+      line-height: 1;
+      margin-bottom: -16px;
+      display: block;
+    }
+    .chapter-title {
+      font-size: clamp(18px, 4vw, 26px);
+      font-weight: 400;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(242,184,192,0.4);
+    }
+
+    /* ===== 本文 ===== */
+    .story-text {
+      font-size: 15px;
+      color: var(--text-main);
+      line-height: 2.4;
+      font-weight: 300;
+    }
+    .story-text p {
+      margin-bottom: 28px;
+    }
+    .story-text p:last-child { margin-bottom: 0; }
+
+    /* ===== 強調ブロック ===== */
+    .highlight-block {
+      background: linear-gradient(135deg, var(--pink-pale), #fce4e9);
+      border-left: 3px solid var(--pink-dusty);
+      border-radius: 0 16px 16px 0;
+      padding: 24px 28px;
+      margin: 32px 0;
+      font-size: 16px;
+      color: var(--text-main);
+      line-height: 2;
+      font-weight: 400;
+    }
+
+    /* ===== 暗い強調 ===== */
+    .dark-block {
+      background: var(--dark);
+      border-radius: 20px;
+      padding: 32px 28px;
+      margin: 32px 0;
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+      line-height: 2.4;
+      position: relative;
+      overflow: hidden;
+    }
+    .dark-block::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(242,184,192,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .dark-block-quote {
+      font-family: var(--font-en);
+      font-style: italic;
+      font-size: clamp(18px, 4vw, 24px);
+      color: var(--pink-main);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* ===== 転換点 ===== */
+    .turning-point {
+      text-align: center;
+      padding: 48px 24px;
+      margin: 48px 0;
+      position: relative;
+    }
+    .turning-point::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, var(--pink-dusty));
+    }
+    .turning-point::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to top, transparent, var(--pink-dusty));
+    }
+    .turning-emoji {
+      font-size: 40px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .turning-text {
+      font-size: clamp(16px, 3.5vw, 22px);
+      font-weight: 400;
+      color: var(--text-main);
+      line-height: 1.8;
+    }
+    .turning-text em {
+      color: var(--pink-deep);
+      font-style: normal;
+    }
+
+    /* ===== タイムライン ===== */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+      margin: 32px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--pink-dusty), rgba(212,144,154,0.2));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--pink-dusty);
+      border: 2px solid var(--off-white);
+      box-shadow: 0 0 0 2px var(--pink-dusty);
+    }
+    .timeline-age {
+      font-family: var(--font-en);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--pink-dusty);
+      margin-bottom: 4px;
+    }
+    .timeline-text {
+      font-size: 15px;
+      color: var(--text-main);
+      line-height: 2;
+    }
+
+    /* ===== ミッションセクション ===== */
+    .mission-section {
+      background: linear-gradient(135deg, var(--dark), #3a2525);
+      border-radius: 28px;
+      padding: 52px 36px;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mission-section::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(242,184,192,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .mission-section::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(212,144,154,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .mission-en {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--pink-main);
+      opacity: 0.6;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .mission-title {
+      font-size: clamp(18px, 4vw, 26px);
+      font-weight: 400;
+      color: white;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .mission-title em {
+      color: var(--pink-main);
+      font-style: normal;
+    }
+    .mission-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 2.4;
+      margin-bottom: 36px;
+    }
+
+    /* ===== CTA ===== */
+    .btn-primary {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--pink-dusty), var(--pink-deep));
+      color: white;
+      padding: 20px 32px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 400;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      box-shadow: 0 8px 24px rgba(192,112,128,0.3);
+      position: relative;
+      z-index: 1;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(192,112,128,0.4);
+    }
+    .btn-line {
+      display: block;
+      width: 100%;
+      background: #06C755;
+      color: white;
+      padding: 18px 32px;
+      border-radius: 50px;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 12px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-line:hover { background: #05b84d; transform: translateY(-1px); }
+
+    /* ===== 区切り ===== */
+    .divider {
+      text-align: center;
+      margin: 48px 0;
+      color: var(--pink-main);
+      font-size: 20px;
+      letter-spacing: 0.5em;
+    }
+
+    /* ===== フッター ===== */
+    .footer {
+      text-align: center;
+      padding: 32px 0;
+      font-family: var(--font-en);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--text-light);
+    }
+
+    /* ===== アニメーション ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="https://miho22light.vercel.app" class="back-btn">← HPに戻る</a>
+    <div class="site-logo">miho.22light</div>
+  </header>
+
+  <!-- ヒーロー -->
+  <div class="hero">
+    <div class="hero-en">My Story</div>
+    <h1 class="hero-title">
+      どん底から気づいた、<br>
+      <em>「本当の自分」</em>の話。
+    </h1>
+    <p class="hero-sub">
+      16歳の出産。2000万の借金。うつ、摂食障害。父の死。<br>
+      それでも今、私は「人生って気楽やった」と笑えています。
+    </p>
+  </div>
+
+  <main class="main">
+
+    <!-- Chapter 1 -->
+    <div class="chapter">
+      <span class="chapter-num">01</span>
+      <h2 class="chapter-title">「こうあるべき」という檻の中で</h2>
+      <div class="story-text">
+        <p>物心ついた頃から、私は「いい子」でいることしか知りませんでした。</p>
+        <p>母の理想とする女性像、母親像。それが私の「正解」でした。完璧にしないといけない。こうあるべき。私はこうしてはいけない。その言葉が、いつの間にか私の中の声になっていた。</p>
+        <p>「もっとこうしないと愛されない」「もっとできないと評価されない」——そう思い込んで、ずっと誰かの期待に応え続けてきました。</p>
+      </div>
+
+      <div class="dark-block">
+        <span class="dark-block-quote">"でもそうなれない自分が、怖かった。"</span>
+        自由にできないことが苦しかった。完璧じゃないといけないことが苦しかった。それでも「こんな自分はダメだ」と、また自分を責める。その繰り返しでした。
+      </div>
+
+      <div class="story-text">
+        <p>長い間、私は自分を傷つけることで、その苦しさを逃がしていました。誰にも言えなかった。言えるわけがなかった。</p>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- タイムライン -->
+    <div class="chapter">
+      <span class="chapter-num">02</span>
+      <h2 class="chapter-title">次々と訪れた、人生のどん底</h2>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-age">16歳</div>
+          <div class="timeline-text">長女を出産。まだ自分自身が子どもだった私が、母になりました。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-age">20歳</div>
+          <div class="timeline-text">長男を出産。同時に、2000万円という借金が現実になっていきました。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-age">その後</div>
+          <div class="timeline-text">うつ病、摂食障害。心も体も限界でした。それでも「大丈夫」と笑い続けていた。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-age">転機</div>
+          <div class="timeline-text">父の死。突然の別れが、私の人生を根底から揺さぶりました。</div>
+        </div>
+      </div>
+
+      <div class="highlight-block">
+        客観的に見れば、これほどの重荷を背負った人生。でも当時の私には、それが「当たり前」でした。苦しいのが普通だと思っていた。
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- Chapter 3 転換点 -->
+    <div class="chapter">
+      <span class="chapter-num">03</span>
+      <h2 class="chapter-title">父の死が、教えてくれたこと</h2>
+
+      <div class="story-text">
+        <p>父が逝った日、私は初めて本気で考えました。</p>
+      </div>
+
+      <div class="turning-point">
+        <span class="turning-emoji">🕊️</span>
+        <p class="turning-text">
+          「人生は一度きりで、<br>
+          いつ死ぬかわからない。<br>
+          <em>だったら、やりたいことをやろう。</em>」
+        </p>
+      </div>
+
+      <div class="story-text">
+        <p>その言葉が、初めて心の底から湧いてきた瞬間でした。</p>
+        <p>そこから私は、ずっと興味があった心理学を学び始めました。量子力学、スピリチュアル、あらゆる方面から「現実創造」を探求していった。</p>
+        <p>そして気がついたんです。</p>
+      </div>
+
+      <div class="dark-block">
+        <span class="dark-block-quote">"私は、自分で自分を苦しめていた。"</span>
+        誰かに苦しめられていたんじゃない。母でもなく、環境でもなく、私自身が作り上げた「思い込み」が、私の人生を止めていたんです。
+      </div>
+
+      <div class="story-text">
+        <p>ブロックを外すことを実践し始めたら、現実が本当に、思うように変わっていきました。</p>
+        <p>お金のブロックが外れた。人の目が気にならなくなった。やりたいことに素直に動けるようになった。人生が、こんなに気楽だったなんて——。</p>
+      </div>
+
+      <div class="highlight-block">
+        あんなに苦しかった私が、今ここで笑えている。<br>
+        それだけで、もう十分すぎるほど、奇跡だと思っています。
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- Chapter 4 ミッション -->
+    <div class="chapter">
+      <span class="chapter-num">04</span>
+      <h2 class="chapter-title">だから私は、あなたのそばにいたい</h2>
+
+      <div class="story-text">
+        <p>私がサポートしたいのは、昔の私と同じような人。</p>
+        <p>自分に自信が持てない。自分らしく生きたいのに、変わり方がわからない。いつも同じことで悩んだり、同じ現象が繰り返される。</p>
+        <p>そして——誰の目も、評価も気にせず、ただ気楽に生きたい。</p>
+      </div>
+
+      <div class="turning-point">
+        <span class="turning-emoji">🌸</span>
+        <p class="turning-text">
+          変われないんじゃない。<br>
+          ただ、<em>ブロックがかかっているだけ。</em><br>
+          それを外せば、人生は変わる。
+        </p>
+      </div>
+
+      <div class="story-text">
+        <p>私はそれを、自分の人生で証明してきました。だから自信を持って言えます。</p>
+        <p>あなたの苦しさは、あなたのせいじゃない。そしてあなたは、必ず変われる。</p>
+      </div>
+    </div>
+
+    <!-- ミッションCTA -->
+    <div class="mission-section chapter">
+      <span class="mission-en">Take The First Step</span>
+      <h2 class="mission-title">
+        まず、話してみてください。<br>
+        <em>それだけでいい。</em>
+      </h2>
+      <p class="mission-text">
+        難しく考えなくていい。<br>
+        準備しなくていい。<br>
+        今のあなたのまま、来てください。<br><br>
+        無料30分セッションで、<br>
+        あなたの本質から一緒に見ていきます。
+      </p>
+      <a href="https://lin.ee/6vgyrrP" class="btn-primary">無料30分セッションを予約する →</a>
+      <a href="https://lin.ee/6vgyrrP" class="btn-line">💬 公式LINEに戻る</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">© 2026 miho.22light</footer>
+
+  <script>
+    // スクロールアニメーション
+    const chapters = document.querySelectorAll('.chapter');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    chapters.forEach(c => observer.observe(c));
+  </script>
+
+</body>
+</html>

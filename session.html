@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>セッション・料金案内｜miho.22light</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink-main: #F2B8C0;
+      --pink-pale: #FDE8EC;
+      --pink-dusty: #D4909A;
+      --pink-deep: #C07080;
+      --pink-light: #FFF0F3;
+      --off-white: #FDF8F8;
+      --text-main: #3D2C2C;
+      --text-sub: #8C6B6B;
+      --text-light: #C4A8A8;
+      --white: #FFFFFF;
+      --dark: #2A1F1F;
+      --gold: #C4A882;
+      --font-jp: 'Noto Serif JP', serif;
+      --font-en: 'Cormorant Garamond', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-jp);
+      background: var(--off-white);
+      color: var(--text-main);
+      line-height: 1.9;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ===== ヘッダー ===== */
+    .site-header {
+      text-align: center;
+      padding: 32px 24px 24px;
+      position: relative;
+    }
+    .site-logo {
+      font-family: var(--font-en);
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      color: var(--text-light);
+    }
+    .back-btn {
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      color: var(--pink-dusty);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .back-btn:hover { opacity: 0.7; }
+
+    /* ===== ヒーロー ===== */
+    .hero {
+      text-align: center;
+      padding: 48px 24px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(242,184,192,0.18) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-en {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 0.45em;
+      color: var(--pink-dusty);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .hero-en::before, .hero-en::after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--pink-dusty);
+      opacity: 0.5;
+    }
+    .hero-title {
+      font-size: clamp(24px, 6vw, 42px);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--pink-deep);
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 2.2;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+
+    /* ===== メイン ===== */
+    .main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ===== セクションラベル ===== */
+    .section-label {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--pink-dusty);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .section-label::before, .section-label::after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--pink-dusty);
+      opacity: 0.4;
+    }
+    .section-title {
+      font-size: clamp(20px, 4vw, 30px);
+      font-weight: 400;
+      text-align: center;
+      color: var(--text-main);
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    /* ===== 無料セッション ===== */
+    .free-session {
+      background: linear-gradient(135deg, var(--dark), #3a2525);
+      border-radius: 28px;
+      padding: 48px 32px;
+      margin-bottom: 64px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .free-session.visible { opacity: 1; transform: translateY(0); }
+    .free-session::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(242,184,192,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .free-session::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 150px; height: 150px;
+      background: radial-gradient(circle, rgba(212,144,154,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .free-badge {
+      display: inline-block;
+      background: var(--pink-dusty);
+      color: white;
+      font-size: 12px;
+      padding: 6px 20px;
+      border-radius: 50px;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .free-title {
+      font-size: clamp(22px, 5vw, 34px);
+      font-weight: 400;
+      color: white;
+      line-height: 1.6;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .free-price {
+      font-family: var(--font-en);
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--pink-main);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .free-price span {
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      margin-left: 8px;
+    }
+
+    .free-steps {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .free-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 18px 20px;
+      border: 1px solid rgba(242,184,192,0.15);
+    }
+    .free-step-num {
+      font-family: var(--font-en);
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--pink-dusty);
+      line-height: 1;
+      min-width: 28px;
+    }
+    .free-step-content {}
+    .free-step-title {
+      font-size: 15px;
+      font-weight: 400;
+      color: white;
+      margin-bottom: 4px;
+    }
+    .free-step-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+    }
+
+    /* ===== 変容ビジョン ===== */
+    .vision-section {
+      margin-bottom: 64px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .vision-section.visible { opacity: 1; transform: translateY(0); }
+
+    .before-after {
+      display: grid;
+      gap: 12px;
+    }
+    .ba-row {
+      display: grid;
+      grid-template-columns: 1fr 44px 1fr;
+      align-items: center;
+    }
+    .ba-before {
+      background: var(--white);
+      border-radius: 12px 0 0 12px;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--text-sub);
+      border: 1px solid rgba(200,200,200,0.3);
+      border-right: none;
+      line-height: 1.6;
+    }
+    .ba-arrow {
+      background: var(--pink-dusty);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+    }
+    .ba-after {
+      background: var(--pink-pale);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 400;
+      border: 1px solid rgba(242,184,192,0.4);
+      border-left: none;
+      line-height: 1.6;
+    }
+
+    /* ===== 料金カード ===== */
+    .plans-section {
+      margin-bottom: 64px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .plans-section.visible { opacity: 1; transform: translateY(0); }
+
+    .plan-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 36px 28px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(242,184,192,0.3);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .plan-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(212,144,154,0.15);
+    }
+    .plan-card.featured {
+      background: linear-gradient(135deg, var(--dark), #3a2525);
+      border: none;
+    }
+    .plan-card.featured::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(242,184,192,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .plan-badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 5px 16px;
+      border-radius: 50px;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .plan-badge.popular {
+      background: var(--pink-dusty);
+      color: white;
+    }
+    .plan-badge.single {
+      background: var(--pink-pale);
+      color: var(--pink-dusty);
+      border: 1px solid var(--pink-dusty);
+    }
+
+    .plan-name {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .plan-card.featured .plan-name { color: white; }
+
+    .plan-duration {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+    .plan-card.featured .plan-duration { color: rgba(255,255,255,0.45); }
+
+    .plan-price-wrap {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(242,184,192,0.3);
+    }
+    .plan-card.featured .plan-price-wrap {
+      border-bottom-color: rgba(255,255,255,0.1);
+    }
+    .plan-price {
+      font-family: var(--font-en);
+      font-size: 52px;
+      font-weight: 300;
+      color: var(--pink-dusty);
+      line-height: 1;
+    }
+    .plan-card.featured .plan-price { color: var(--pink-main); }
+    .plan-price-unit {
+      font-size: 16px;
+      color: var(--text-sub);
+      margin-left: 4px;
+    }
+    .plan-card.featured .plan-price-unit { color: rgba(255,255,255,0.45); }
+    .plan-tax {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+    .plan-card.featured .plan-tax { color: rgba(255,255,255,0.35); }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .plan-features li {
+      font-size: 14px;
+      color: var(--text-sub);
+      padding: 8px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border-bottom: 1px solid rgba(242,184,192,0.15);
+    }
+    .plan-features li:last-child { border-bottom: none; }
+    .plan-card.featured .plan-features li {
+      color: rgba(255,255,255,0.65);
+      border-bottom-color: rgba(255,255,255,0.08);
+    }
+    .plan-features li::before {
+      content: '✦';
+      color: var(--pink-dusty);
+      font-size: 10px;
+      margin-top: 4px;
+    }
+    .plan-card.featured .plan-features li::before {
+      color: var(--pink-main);
+    }
+
+    .plan-btn {
+      display: block;
+      width: 100%;
+      padding: 18px 32px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-family: var(--font-jp);
+      font-weight: 400;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+    .plan-btn.primary {
+      background: linear-gradient(135deg, var(--pink-dusty), var(--pink-deep));
+      color: white;
+      box-shadow: 0 6px 20px rgba(212,144,154,0.3);
+    }
+    .plan-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(192,112,128,0.4);
+    }
+    .plan-btn.outline {
+      background: transparent;
+      color: var(--pink-dusty);
+      border: 1.5px solid var(--pink-dusty);
+    }
+    .plan-btn.outline:hover {
+      background: var(--pink-pale);
+    }
+
+    /* 人気バッジ */
+    .popular-ribbon {
+      position: absolute;
+      top: 20px;
+      right: -8px;
+      background: var(--gold);
+      color: white;
+      font-size: 11px;
+      padding: 6px 20px 6px 16px;
+      letter-spacing: 0.08em;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 8px 50%);
+    }
+
+    /* ===== 流れセクション ===== */
+    .flow-section {
+      margin-bottom: 64px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .flow-section.visible { opacity: 1; transform: translateY(0); }
+
+    .flow-steps {
+      display: grid;
+      gap: 0;
+    }
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(242,184,192,0.2);
+      position: relative;
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-step-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink-pale), var(--pink-main));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .flow-step-content {}
+    .flow-step-title {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .flow-step-text {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.8;
+    }
+
+    /* ===== CTA最終 ===== */
+    .final-cta {
+      background: linear-gradient(135deg, var(--pink-pale), #fce4e9);
+      border-radius: 28px;
+      padding: 48px 32px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .final-cta.visible { opacity: 1; transform: translateY(0); }
+    .final-cta-title {
+      font-size: clamp(18px, 4vw, 26px);
+      font-weight: 400;
+      color: var(--text-main);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .final-cta-sub {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 2;
+      margin-bottom: 32px;
+    }
+    .btn-primary {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--pink-dusty), var(--pink-deep));
+      color: white;
+      padding: 20px 32px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 400;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      box-shadow: 0 8px 24px rgba(192,112,128,0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(192,112,128,0.4);
+    }
+
+    /* ===== 区切り ===== */
+    .divider {
+      text-align: center;
+      margin: 48px 0;
+      color: var(--pink-main);
+      font-size: 18px;
+      letter-spacing: 0.5em;
+    }
+
+    /* ===== フッター ===== */
+    .footer {
+      text-align: center;
+      padding: 32px 0;
+      font-family: var(--font-en);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--text-light);
+    }
+
+    /* ===== アニメーション ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="https://miho22light.vercel.app" class="back-btn">← HPに戻る</a>
+    <div class="site-logo">miho.22light</div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-en">Session & Plans</div>
+    <h1 class="hero-title">
+      セッションで、<br>
+      <em>人生のブロックを外す。</em>
+    </h1>
+    <p class="hero-sub">
+      まずは無料30分から。<br>
+      本気で変わりたい方へ、3ヶ月プログラムをご用意しています。
+    </p>
+  </div>
+
+  <main class="main">
+
+    <!-- 無料セッション -->
+    <div class="free-session scroll-fade">
+      <span class="free-badge">✦ まずはここから</span>
+      <h2 class="free-title">無料30分<br>体験セッション</h2>
+      <div class="free-price">¥0 <span>完全無料</span></div>
+
+      <div class="free-steps">
+        <div class="free-step">
+          <div class="free-step-num">01</div>
+          <div class="free-step-content">
+            <div class="free-step-title">事前ヒアリング</div>
+            <div class="free-step-text">Googleフォームで今の悩みや状況を事前にお聞きします。当日をより深く使うために。</div>
+          </div>
+        </div>
+        <div class="free-step">
+          <div class="free-step-num">02</div>
+          <div class="free-step-content">
+            <div class="free-step-title">ブロックの特定</div>
+            <div class="free-step-text">30分のZoomセッションで、あなたの潜在意識のブロックを一緒に特定します。</div>
+          </div>
+        </div>
+        <div class="free-step">
+          <div class="free-step-num">03</div>
+          <div class="free-step-content">
+            <div class="free-step-title">手放し方のご説明</div>
+            <div class="free-step-text">ブロックの手放し方を簡単にご説明。次の一歩が見えるようになります。</div>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://forms.gle/Xd79tVTK33T2yRW7A" class="plan-btn primary" style="position:relative;z-index:1;">無料セッションを申し込む →</a>
+    </div>
+
+    <!-- 変容ビジョン -->
+    <div class="vision-section scroll-fade">
+      <div class="section-label">Your Transformation</div>
+      <h2 class="section-title">3ヶ月で、こう変わる。</h2>
+
+      <div class="before-after">
+        <div class="ba-row">
+          <div class="ba-before">人の目がいつも気になる</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after">人の目が気にならなくなった</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before">自分らしく生きたいのに動けない</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after">本来の自分を生きられるようになった</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before">同じ悩みを繰り返してしまう</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after">現実を書き換えるプロセスを学べた</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before">変わり方がわからない</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after">自分でブロックを外せるようになった</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 料金プラン -->
+    <div class="plans-section scroll-fade">
+      <div class="section-label">Plans & Pricing</div>
+      <h2 class="section-title">料金プラン</h2>
+
+      <!-- 単発セッション -->
+      <div class="plan-card">
+        <span class="plan-badge single">単発セッション</span>
+        <div class="plan-name">60分セッション</div>
+        <div class="plan-duration">1回完結・Zoom</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price">¥15,000<span class="plan-price-unit"></span></div>
+          <div class="plan-tax">税込</div>
+        </div>
+        <ul class="plan-features">
+          <li>60分 完全1対1 Zoomセッション</li>
+          <li>潜在意識のブロック特定</li>
+          <li>手放しワーク実践</li>
+          <li>セッション後フォローなし</li>
+        </ul>
+        <a href="https://forms.gle/Xd79tVTK33T2yRW7A" class="plan-btn outline">無料体験から申し込む</a>
+      </div>
+
+      <!-- 3ヶ月プログラム -->
+      <div class="plan-card featured">
+        <div class="popular-ribbon">おすすめ</div>
+        <span class="plan-badge popular">3ヶ月変容プログラム</span>
+        <div class="plan-name" style="color:white;">本気で変わりたい方へ</div>
+        <div class="plan-duration">3ヶ月・月2回セッション</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price">¥220,000<span class="plan-price-unit"></span></div>
+          <div class="plan-tax">税込 ¥242,000</div>
+        </div>
+        <ul class="plan-features">
+          <li>月2回 完全1対1 Zoomセッション（計6回）</li>
+          <li>毎月PDF教材（量子力学・引き寄せ・宇宙の法則）</li>
+          <li>あなた専用AIプロンプト渡し（24時間自己対話）</li>
+          <li>セッション間のLINEサポート</li>
+          <li>クレジットカード払い対応</li>
+        </ul>
+        <a href="https://forms.gle/Xd79tVTK33T2yRW7A" class="plan-btn primary" style="position:relative;z-index:1;">無料体験から申し込む →</a>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 申し込みの流れ -->
+    <div class="flow-section scroll-fade">
+      <div class="section-label">How To Start</div>
+      <h2 class="section-title">申し込みの流れ</h2>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-icon">📝</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">① フォームから申し込む</div>
+            <div class="flow-step-text">下のボタンからGoogleフォームに進み、今の状況をお聞かせください。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-icon">📅</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">② 日程調整</div>
+            <div class="flow-step-text">LINEにてご連絡。ご都合の良い日時を一緒に決めます。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-icon">💌</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">③ Zoom URLをお送りします</div>
+            <div class="flow-step-text">前日までにZoomのURLをお送りします。準備はそれだけでOK。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-icon">🌸</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">④ 当日、話しましょう</div>
+            <div class="flow-step-text">難しく考えなくていい。今のあなたのまま来てください。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-icon">✨</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">⑤ 本気の方は3ヶ月プログラムへ</div>
+            <div class="flow-step-text">セッション後、本気で変わりたいと感じた方にプログラムをご案内します。押し売りは一切しません。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="final-cta scroll-fade">
+      <h2 class="final-cta-title">
+        変わりたいと思った、<br>その瞬間が始まりです。
+      </h2>
+      <p class="final-cta-sub">
+        まず30分、話してみてください。<br>
+        それだけで、何かが変わり始めます。
+      </p>
+      <a href="https://forms.gle/Xd79tVTK33T2yRW7A" class="btn-primary">無料セッションを申し込む →</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">© 2026 miho.22light</footer>
+
+  <script>
+    // スクロールアニメーション
+    const fadeEls = document.querySelectorAll('.scroll-fade');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
